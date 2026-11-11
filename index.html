@@ -1,77 +1,59 @@
-
 <!doctype html>
 <html lang="en" data-theme="dark">
-  <head>
-    <!-- figma:head-start -->
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <!-- figma:head-start -->
 
-    <meta
-      name="description"
-      content="Mahyar Dana is an AI & Backend Engineer specializing in production-ready backend systems, artificial intelligence, industrial IoT, and automation."
-    />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta property="og:image"
+    content="https://mohammad-mesgarzadeh.github.io/mahyar-dana-portfolio/assets/brand/md-monogram-512.png" />
 
-    <!-- Default theme: Dark Mode -->
-    <meta name="theme-color" content="#090d18" />
+  <meta name="description"
+    content="Mahyar Dana is an AI & Backend Engineer specializing in production-ready backend systems, artificial intelligence, industrial IoT, and automation." />
 
-    <!-- Initialize theme before CSS loads to prevent theme flash -->
-    <script>
-      (() => {
-        try {
-          const savedTheme = localStorage.getItem("mahyar-theme");
+  <!-- Default theme: Dark Mode -->
+  <meta name="theme-color" content="#090d18" />
 
-          document.documentElement.dataset.theme =
-            savedTheme === "light" ? "light" : "dark";
-        } catch {
-          document.documentElement.dataset.theme = "dark";
-        }
-      })();
-    </script>
+  <!-- Initialize theme before CSS loads to prevent theme flash -->
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem("mahyar-theme");
 
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" sizes="any" />
+        document.documentElement.dataset.theme =
+          savedTheme === "light" ? "light" : "dark";
+      } catch {
+        document.documentElement.dataset.theme = "dark";
+      }
+    })();
+  </script>
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="32x32"
-      href="/favicon-32x32.png"
-    />
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="16x16"
-      href="/favicon-16x16.png"
-    />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
 
-    <link
-      rel="icon"
-      type="image/png"
-      sizes="128x128"
-      href="/favicon-128.png"
-    />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    <link
-      rel="apple-touch-icon"
-      sizes="180x180"
-      href="/apple-touch-icon.png"
-    />
+  <link rel="icon" type="image/png" sizes="128x128" href="/favicon-128.png" />
 
-    <!-- Page Title -->
-    <title>Mahyar Dana | AI &amp; Backend Engineer</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 
-    <!-- figma:head-end -->
-  </head>
+  <!-- Page Title -->
+  <title>Mahyar Dana | AI &amp; Backend Engineer</title>
 
-  <body>
-    <!-- figma:body-start -->
+  <!-- figma:head-end -->
+</head>
 
-    <div id="root"></div>
+<body>
+  <!-- figma:body-start -->
 
-    <script type="module" src="/src/main.tsx"></script>
+  <div id="root"></div>
 
-    <!-- figma:body-end -->
-  </body>
+  <script type="module" src="/src/main.tsx"></script>
+
+  <!-- figma:body-end -->
+</body>
+
 </html>
