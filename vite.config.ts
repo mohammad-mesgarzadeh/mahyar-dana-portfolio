@@ -14,9 +14,7 @@ export default defineConfig(({ mode }) => {
   const isDevelopment = mode === "development"
 
   return {
-    base: process.env.FIGMA_PUBLIC_URL
-      ? `${process.env.FIGMA_PUBLIC_URL}/`
-      : "/",
+    base: '/mahyar-dana-portfolio/',
 
     plugins: [
       react(),
