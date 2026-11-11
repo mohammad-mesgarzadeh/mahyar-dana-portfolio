@@ -1,0 +1,844 @@
+
+/* =========================================================
+   MAHYAR DANA — PROFESSIONAL EXPERIENCE
+   Editorial Timeline / Engineering Career Progression
+   ========================================================= */
+
+.experience {
+  --experience-accent: var(--accent, #718bff);
+  --experience-cyan: var(--cyan, #36d6ce);
+
+  width: 100%;
+  max-width: none;
+  background: var(--bg-raised);
+}
+
+/* =========================================================
+   OVERVIEW PANEL
+   ========================================================= */
+
+.experience-overview {
+  border: 1px solid var(--border);
+  border-radius: 13px;
+
+  background:
+    radial-gradient(
+      ellipse at 90% 10%,
+      color-mix(in srgb, var(--accent) 7%, transparent),
+      transparent 58%
+    ),
+    var(--surface, var(--bg-raised));
+
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035);
+}
+
+.experience-overview-copy {
+  min-width: 0;
+}
+
+.experience-overview-label,
+.experience-visual-meta,
+.experience-responsibilities-heading,
+.experience-footer {
+  color: var(--text-tertiary);
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+}
+
+.experience-overview-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.experience-overview-label::before {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--cyan);
+
+  box-shadow:
+    0 0 9px color-mix(in srgb, var(--cyan) 65%, transparent);
+
+  content: "";
+}
+
+.experience-overview-copy h3 {
+  max-width: 390px;
+
+  margin: 19px 0 11px;
+
+  color: var(--text);
+
+  font: 500 clamp(21px, 2.4vw, 30px) / 1.22 var(--display);
+  letter-spacing: -.045em;
+}
+
+.experience-overview-copy > p {
+  max-width: 410px;
+
+  margin: 0;
+
+  color: var(--text-secondary);
+
+  font-size: 11px;
+  line-height: 1.85;
+}
+
+/* Career progression labels */
+
+.experience-path {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+
+  margin-top: 23px;
+
+  color: var(--text-tertiary);
+
+  font: 7px var(--mono);
+  letter-spacing: .07em;
+}
+
+.experience-path i {
+  width: 17px;
+  height: 1px;
+
+  background: var(--cyan);
+  opacity: .8;
+}
+
+/* Overview diagram */
+
+.experience-overview-visual {
+  min-width: 0;
+
+  padding: 10px 12px 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: color-mix(in srgb, var(--bg) 55%, transparent);
+}
+
+.experience-visual-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+
+  padding: 2px 3px 9px;
+}
+
+.experience-overview-visual .experience-diagram {
+  display: block;
+
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: transparent;
+  box-shadow: none;
+}
+
+/* =========================================================
+   TIMELINE STRUCTURE
+   ========================================================= */
+
+
+
+.experience-item {
+  --experience-item-accent: var(--experience-accent);
+
+  display: grid;
+
+  grid-template-columns: 150px minmax(0, 1fr);
+
+  gap: clamp(18px, 3vw, 34px);
+  align-items: stretch;
+
+  min-width: 0;
+}
+
+.experience-item:nth-child(2) {
+  --experience-item-accent: var(--cyan);
+}
+
+.experience-item:nth-child(3) {
+  --experience-item-accent: #63c9aa;
+}
+
+/* =========================================================
+   DATE RAIL
+   ========================================================= */
+
+.experience-marker {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  min-width: 0;
+
+  padding: 4px 8px 28px 23px;
+}
+
+.experience-marker::before {
+  position: absolute;
+
+  top: 7px;
+  bottom: -18px;
+  left: 5px;
+
+  width: 1px;
+
+  background: linear-gradient(
+    to bottom,
+    var(--experience-item-accent),
+    var(--border) 88%
+  );
+
+  content: "";
+}
+
+.experience-item:last-child .experience-marker::before {
+  display: none;
+}
+
+.experience-index {
+  color: var(--experience-item-accent);
+
+  font: 600 11px var(--mono);
+  letter-spacing: .08em;
+}
+
+.experience-node {
+  position: absolute;
+
+  top: 4px;
+  left: 0;
+  z-index: 1;
+
+  width: 11px;
+  height: 11px;
+
+  border: 2px solid var(--experience-item-accent);
+  border-radius: 50%;
+
+  background: var(--bg-raised);
+
+  box-shadow:
+    0 0 0 4px color-mix(
+      in srgb,
+      var(--experience-item-accent) 10%,
+      transparent
+    );
+
+  transition:
+    background 300ms ease,
+    box-shadow 300ms ease,
+    transform 300ms ease;
+}
+
+.experience-date {
+  display: block;
+
+  max-width: 130px;
+  margin-top: 15px;
+
+  color: var(--text-secondary);
+
+  font: 8px/1.8 var(--mono);
+  letter-spacing: .025em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   EXPERIENCE CARD
+   ========================================================= */
+
+.experience-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+  overflow: hidden;
+
+  padding: clamp(18px, 2.3vw, 27px);
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--surface, var(--bg-raised));
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, .025);
+
+  transition:
+    border-color 300ms ease,
+    background 300ms ease,
+    box-shadow 350ms ease,
+    transform 350ms ease;
+}
+
+/* Company and job title */
+
+.experience-card-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.experience-company-block {
+  min-width: 0;
+}
+
+.experience-company {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: var(--experience-item-accent);
+
+  font: 8px var(--mono);
+  letter-spacing: .1em;
+
+  text-transform: uppercase;
+}
+
+.experience-card h3 {
+  margin: 0;
+
+  color: var(--text);
+
+  font: 500 clamp(17px, 1.7vw, 21px) / 1.35 var(--display);
+  letter-spacing: -.035em;
+
+  overflow-wrap: anywhere;
+
+  transition: color 250ms ease;
+}
+
+/* Location */
+
+.experience-location {
+  display: inline-flex;
+  flex: 0 0 auto;
+
+  align-items: center;
+  gap: 6px;
+
+  max-width: 42%;
+
+  padding: 7px 9px;
+
+  border: 1px solid var(--border);
+  border-radius: 4px;
+
+  color: var(--text-tertiary);
+
+  font: 7px/1.5 var(--mono);
+  letter-spacing: .035em;
+}
+
+.experience-location svg {
+  width: 13px;
+  height: 13px;
+  flex: 0 0 13px;
+
+  color: var(--experience-item-accent);
+}
+
+/* Divider */
+
+.experience-card-divider {
+  height: 1px;
+
+  margin: 19px 0 14px;
+
+  background: var(--border);
+}
+
+/* =========================================================
+   RESPONSIBILITIES
+   ========================================================= */
+
+.experience-responsibilities-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+
+  margin-bottom: 12px;
+
+  font-size: 7px;
+}
+
+.experience-responsibilities {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 23px;
+
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+  counter-reset: contribution;
+}
+
+.experience-responsibilities li {
+  position: relative;
+
+  min-width: 0;
+
+  padding: 0 0 0 22px;
+
+  color: var(--text-secondary);
+
+  font-size: 10px;
+  line-height: 1.8;
+
+  counter-increment: contribution;
+}
+
+.experience-responsibilities li::before {
+  position: absolute;
+
+  top: 1px;
+  left: 0;
+
+  color: var(--experience-item-accent);
+
+  font: 8px var(--mono);
+
+  content: "0" counter(contribution);
+}
+
+/* =========================================================
+   CARD ACCENT
+   ========================================================= */
+
+.experience-card-accent {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: linear-gradient(
+    90deg,
+    var(--experience-item-accent),
+    transparent 75%
+  );
+
+  opacity: .5;
+
+  transform: scaleX(.22);
+  transform-origin: left;
+
+  transition:
+    opacity 300ms ease,
+    transform 500ms ease;
+}
+
+/* =========================================================
+   REVEAL MOTION
+   ========================================================= */
+
+.experience-overview.reveal {
+  opacity: 0;
+
+  transform: translateY(18px);
+  filter: blur(2px);
+
+  transition:
+    opacity 650ms ease,
+    transform 750ms var(
+      --motion-ease,
+      cubic-bezier(.2, .75, .25, 1)
+    ),
+    filter 650ms ease;
+}
+
+.experience-overview.reveal.visible {
+  opacity: 1;
+
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.experience-timeline .experience-item.reveal {
+  opacity: 0;
+
+  transform: translate3d(0, 22px, 0);
+  filter: blur(2px);
+
+  transition:
+    opacity 650ms ease,
+    transform 750ms var(
+      --motion-ease,
+      cubic-bezier(.2, .75, .25, 1)
+    ),
+    filter 650ms ease;
+
+  transition-delay: calc(var(--experience-index, 0) * 110ms);
+}
+
+.experience-timeline .experience-item.reveal.visible {
+  opacity: 1;
+
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+.experience-item.visible .experience-node {
+  animation:
+    experience-node-activate
+    700ms
+    calc(var(--experience-index, 0) * 110ms + 100ms)
+    ease both;
+}
+
+.experience-item.visible .experience-card-accent {
+  opacity: 1;
+
+  transform: scaleX(1);
+
+  transition-delay: 180ms;
+}
+
+.experience-item.visible .experience-responsibilities li {
+  animation: experience-contribution-in 500ms ease both;
+}
+
+.experience-responsibilities li:nth-child(1) {
+  animation-delay: 100ms;
+}
+
+.experience-responsibilities li:nth-child(2) {
+  animation-delay: 190ms;
+}
+
+.experience-responsibilities li:nth-child(3) {
+  animation-delay: 280ms;
+}
+
+@keyframes experience-node-activate {
+  0% {
+    box-shadow:
+      0 0 0 0 color-mix(
+        in srgb,
+        var(--experience-item-accent) 25%,
+        transparent
+      );
+  }
+
+  55% {
+    box-shadow:
+      0 0 0 8px color-mix(
+        in srgb,
+        var(--experience-item-accent) 13%,
+        transparent
+      );
+  }
+
+  100% {
+    box-shadow:
+      0 0 0 4px color-mix(
+        in srgb,
+        var(--experience-item-accent) 10%,
+        transparent
+      );
+  }
+}
+
+@keyframes experience-contribution-in {
+  from {
+    opacity: .25;
+    transform: translateY(5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================================
+   HOVER INTERACTIONS
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .experience-card:hover {
+    border-color: color-mix(
+      in srgb,
+      var(--experience-item-accent) 42%,
+      var(--border)
+    );
+
+    background: var(--surface, var(--bg-raised));
+
+    box-shadow:
+      0 15px 34px rgba(0, 0, 0, .075),
+      0 0 24px color-mix(
+        in srgb,
+        var(--experience-item-accent) 6%,
+        transparent
+      );
+
+    transform: translateY(-3px);
+  }
+
+  .experience-card:hover h3 {
+    color: var(--experience-item-accent);
+  }
+
+  .experience-card:hover .experience-card-accent {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+
+  .experience-item:hover .experience-node {
+    background: var(--experience-item-accent);
+
+    box-shadow:
+      0 0 0 5px color-mix(
+        in srgb,
+        var(--experience-item-accent) 12%,
+        transparent
+      );
+  }
+}
+
+/* =========================================================
+   LIGHT MODE
+   ========================================================= */
+
+[data-theme="light"] .experience-overview {
+  background:
+    radial-gradient(
+      ellipse at 90% 10%,
+      color-mix(in srgb, var(--accent) 5%, transparent),
+      transparent 58%
+    ),
+    #fff;
+
+  box-shadow: 0 5px 22px rgba(42, 62, 97, .035);
+}
+
+[data-theme="light"] .experience-overview-visual {
+  background: #f5f8fd;
+}
+
+[data-theme="light"] .experience-card {
+  background: #fff;
+
+  box-shadow: 0 4px 18px rgba(38, 57, 91, .035);
+}
+
+[data-theme="light"] .experience-card:hover {
+  box-shadow: 0 15px 34px rgba(38, 57, 91, .085);
+}
+
+[data-theme="light"] .experience-node {
+  background: #f7f9fc;
+}
+
+[data-theme="light"] .experience-location {
+  background: #f8fafe;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 950px) {
+  .experience-overview-copy h3,
+  .experience-overview-copy > p {
+    max-width: 620px;
+  }
+
+  .experience-overview-visual {
+    max-width: 100%;
+  }
+
+  .experience-item {
+    grid-template-columns: 125px minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .experience-responsibilities {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+  .experience-overview-copy h3 {
+    margin-top: 14px;
+    font-size: 23px;
+  }
+
+  .experience-overview-copy > p {
+    font-size: 10px;
+  }
+
+  .experience-path {
+    gap: 6px;
+    margin-top: 17px;
+    font-size: 6px;
+  }
+
+  .experience-path i {
+    width: 10px;
+  }
+
+  .experience-overview-visual {
+    padding: 8px 7px 6px;
+  }
+
+  .experience-item {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .experience-marker {
+    display: grid;
+
+    grid-template-columns: auto 1fr;
+
+    align-items: center;
+    column-gap: 10px;
+
+    min-height: 23px;
+
+    padding: 0 0 0 21px;
+  }
+
+  .experience-marker::before {
+    top: 14px;
+    bottom: -22px;
+    left: 5px;
+  }
+
+  .experience-node {
+    top: 5px;
+  }
+
+  .experience-index {
+    font-size: 10px;
+  }
+
+  .experience-date {
+    max-width: none;
+    margin: 0;
+
+    text-align: right;
+
+    font-size: 7px;
+  }
+
+  .experience-card {
+    padding: 17px;
+  }
+
+  .experience-card-heading {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .experience-card h3 {
+    font-size: 18px;
+  }
+
+  .experience-location {
+    max-width: 100%;
+    align-self: flex-start;
+  }
+
+  .experience-card-divider {
+    margin: 15px 0 12px;
+  }
+
+  .experience-responsibilities {
+    gap: 9px;
+  }
+
+  .experience-responsibilities li {
+    font-size: 10px;
+  }
+}
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 360px) {
+  .experience-path {
+    flex-wrap: wrap;
+    line-height: 1.8;
+  }
+
+  .experience-card {
+    padding: 14px;
+  }
+
+  .experience-date {
+    font-size: 6.5px;
+  }
+
+  .experience-responsibilities-heading {
+    font-size: 6.5px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .experience-overview.reveal,
+  .experience-timeline .experience-item.reveal,
+  .experience-timeline .experience-item.reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
+  .experience,
+  .experience *,
+  .experience *::before,
+  .experience *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .experience-responsibilities li {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .experience-card-accent {
+    opacity: .7;
+    transform: none;
+  }
+}

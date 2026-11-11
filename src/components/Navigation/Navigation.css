@@ -1,0 +1,181 @@
+
+/* Navigation design tokens and animations not suited to utility classes. */
+
+:root {
+  --nav-accent: #6eb8ff;
+  --nav-cyan: #68d9e8;
+  --nav-violet: #a58cff;
+
+  --nav-surface: rgba(9, 14, 27, .92);
+  --nav-menu-surface: #0b1220;
+
+  --nav-border: rgba(136, 164, 210, .16);
+  --nav-border-strong: rgba(136, 164, 210, .3);
+
+  --nav-text: #edf3ff;
+  --nav-muted: #8798b5;
+
+  --nav-shadow: 0 5px 24px rgba(0, 0, 0, .035);
+  --nav-shadow-scrolled: 0 10px 35px rgba(0, 0, 0, .09);
+
+  --nav-ease: cubic-bezier(.22, 1, .36, 1);
+}
+
+[data-theme="light"] {
+  --nav-surface: rgba(248, 250, 254, .94);
+  --nav-menu-surface: #f7f9fd;
+
+  --nav-border: rgba(81, 108, 154, .16);
+  --nav-border-strong: rgba(81, 108, 154, .28);
+
+  --nav-text: #17253d;
+  --nav-muted: #7888a2;
+
+  --nav-shadow: 0 5px 24px rgba(38, 62, 99, .045);
+  --nav-shadow-scrolled: 0 10px 35px rgba(38, 62, 99, .09);
+}
+
+.navigation-lock {
+  overscroll-behavior: none;
+}
+
+.navigation-mobile-layer {
+  animation: navigation-layer-enter 220ms ease both;
+}
+
+.navigation-mobile-dialog {
+  animation: navigation-dialog-enter 550ms var(--nav-ease) forwards;
+}
+
+.navigation-mobile-link {
+  opacity: 0;
+  transform: translateY(18px);
+
+  animation:
+    navigation-link-enter 650ms var(--nav-ease)
+    calc(100ms + var(--menu-index, 0) * 85ms) forwards;
+}
+
+.navigation-mobile-link.is-active > span:nth-child(3) {
+  color: var(--nav-accent);
+  border-color: var(--nav-accent);
+  background: rgba(108, 184, 255, .09);
+}
+
+@keyframes navigation-layer-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes navigation-dialog-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes navigation-link-enter {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+[data-theme="light"] .navigation-mobile-dialog {
+  background:
+    radial-gradient(
+      ellipse at 90% 5%,
+      rgba(83, 132, 213, .09),
+      transparent 42%
+    ),
+    linear-gradient(150deg, #fff, #f1f5fb);
+}
+
+/* ThemeToggle is a separate component, so its internal button needs local styling. */
+
+.navigation-theme-control .theme-toggle {
+  display: inline-flex;
+  min-height: 40px;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  padding: 0 11px;
+
+  border: 1px solid transparent;
+  border-radius: 999px;
+
+  color: var(--nav-muted);
+  background: transparent;
+
+  cursor: pointer;
+
+  font: 9px var(--mono);
+
+  transition:
+    color 250ms ease,
+    border-color 250ms ease,
+    background 250ms ease;
+}
+
+.navigation-theme-control .theme-toggle svg {
+  width: 16px;
+  height: 16px;
+}
+
+.navigation-theme-control .theme-toggle:focus-visible {
+  outline: 2px solid var(--nav-accent);
+  outline-offset: 3px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navigation-theme-control .theme-toggle:hover {
+    color: var(--nav-text);
+    border-color: var(--nav-border);
+    background: rgba(255, 255, 255, .05);
+  }
+}
+
+@media (max-width: 900px) {
+  .navigation-header .navigation-theme-control .theme-toggle {
+    width: 42px;
+    min-height: 42px;
+    padding: 0;
+  }
+
+  .navigation-header .navigation-theme-control .theme-toggle span {
+    display: none;
+  }
+}
+
+.navigation-mobile-theme .theme-toggle {
+  min-height: 44px;
+  padding: 0 13px;
+
+  border-color: var(--nav-border);
+  color: var(--nav-text);
+}
+
+/* Reduced motion */
+
+@media (prefers-reduced-motion: reduce) {
+  .navigation-mobile-layer,
+  .navigation-mobile-dialog,
+  .navigation-mobile-link {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .navigation-mobile-dialog,
+  .navigation-mobile-link {
+    opacity: 1;
+    transform: none;
+  }
+}

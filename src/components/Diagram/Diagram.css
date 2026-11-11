@@ -1,0 +1,767 @@
+
+/* =========================================================
+   MAHYAR DANA — TECHNICAL DIAGRAM SYSTEM
+   Modern SVG Architecture / Light + Dark Themes
+   ========================================================= */
+
+.diagram {
+  --diagram-bg: #0c1423;
+  --diagram-surface: #111e31;
+  --diagram-surface-strong: #16263d;
+
+  --diagram-accent: #7b9cff;
+  --diagram-secondary: #55d6d0;
+  --diagram-tertiary: #ae91ff;
+
+  --diagram-text: #eaf0fb;
+  --diagram-muted: #8495af;
+
+  --diagram-border: rgba(139, 164, 205, 0.2);
+  --diagram-border-strong: rgba(133, 168, 231, 0.52);
+  --diagram-grid: rgba(134, 165, 220, 0.09);
+  --diagram-glow: rgba(104, 145, 255, 0.18);
+
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 640 / 260;
+  overflow: hidden;
+  isolation: isolate;
+
+  color: var(--diagram-text);
+  background: var(--diagram-bg);
+
+  border: 1px solid var(--diagram-border);
+  border-radius: 14px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+
+  transition:
+    border-color 280ms ease,
+    box-shadow 280ms ease,
+    background-color 280ms ease;
+}
+
+.diagram-background {
+  fill: var(--diagram-bg);
+}
+
+.diagram-background-grid {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.diagram-gridline {
+  fill: none;
+  stroke: var(--diagram-grid);
+  stroke-width: 0.8;
+}
+
+.diagram-top-rule,
+.diagram-bottom-rule,
+.diagram-node-rule,
+.diagram-rule {
+  fill: none;
+  stroke: var(--diagram-border);
+  stroke-width: 1;
+}
+
+.diagram-corner-dot {
+  fill: var(--diagram-accent);
+  opacity: 0.8;
+}
+
+.diagram-micro-label {
+  fill: var(--diagram-muted);
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace);
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.13em;
+}
+
+/* =========================================================
+   LIGHT THEME
+   ========================================================= */
+
+[data-theme="light"] .diagram {
+  --diagram-bg: #f7f9fd;
+  --diagram-surface: #ffffff;
+  --diagram-surface-strong: #edf3fb;
+
+  --diagram-accent: #4e6fd2;
+  --diagram-secondary: #098f91;
+  --diagram-tertiary: #8060ce;
+
+  --diagram-text: #1b2940;
+  --diagram-muted: #6c7b92;
+
+  --diagram-border: rgba(56, 82, 125, 0.16);
+  --diagram-border-strong: rgba(70, 105, 170, 0.42);
+  --diagram-grid: rgba(68, 101, 158, 0.095);
+  --diagram-glow: rgba(75, 111, 210, 0.12);
+
+  box-shadow:
+    0 12px 30px rgba(44, 66, 104, 0.065),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* =========================================================
+   SECTION-SPECIFIC COLOR IDENTITIES
+   ========================================================= */
+
+.diagram-pipeline,
+.diagram-ecosystem,
+.diagram-api,
+.diagram-cloud,
+.diagram-code {
+  --diagram-accent: #7b9cff;
+  --diagram-secondary: #55d6d0;
+  --diagram-glow: rgba(93, 143, 255, 0.17);
+}
+
+.diagram-neural,
+.diagram-dtqn {
+  --diagram-accent: #ae91ff;
+  --diagram-secondary: #60d3e4;
+  --diagram-glow: rgba(158, 125, 255, 0.18);
+}
+
+.diagram-iot,
+.diagram-controller {
+  --diagram-accent: #5dd9b8;
+  --diagram-secondary: #70bfff;
+  --diagram-glow: rgba(72, 207, 168, 0.15);
+}
+
+.diagram-dns {
+  --diagram-accent: #6daeff;
+  --diagram-secondary: #62d8e7;
+}
+
+.diagram-tunnel {
+  --diagram-accent: #64d9c1;
+  --diagram-secondary: #7bb8ff;
+}
+
+.diagram-adapters {
+  --diagram-accent: #e7b675;
+  --diagram-secondary: #72c9e8;
+}
+
+.diagram-engine {
+  --diagram-accent: #ff9f98;
+  --diagram-secondary: #b39aff;
+}
+
+.diagram-workflow,
+.diagram-contact {
+  --diagram-accent: #a993ff;
+  --diagram-secondary: #62d7d0;
+}
+
+.diagram-timeline {
+  --diagram-accent: #63d6bb;
+  --diagram-secondary: #7aaeff;
+}
+
+/* Light theme color adjustments */
+
+[data-theme="light"] .diagram-pipeline,
+[data-theme="light"] .diagram-ecosystem,
+[data-theme="light"] .diagram-api,
+[data-theme="light"] .diagram-cloud,
+[data-theme="light"] .diagram-code {
+  --diagram-accent: #4f6fd1;
+  --diagram-secondary: #078e91;
+}
+
+[data-theme="light"] .diagram-neural,
+[data-theme="light"] .diagram-dtqn {
+  --diagram-accent: #805dc9;
+  --diagram-secondary: #168da8;
+}
+
+[data-theme="light"] .diagram-iot,
+[data-theme="light"] .diagram-controller,
+[data-theme="light"] .diagram-timeline {
+  --diagram-accent: #168e78;
+  --diagram-secondary: #397bb5;
+}
+
+[data-theme="light"] .diagram-engine {
+  --diagram-accent: #c65d59;
+  --diagram-secondary: #8060ce;
+}
+
+/* =========================================================
+   NODES AND PANELS
+   ========================================================= */
+
+.diagram-node,
+.diagram-terminal,
+.diagram-board,
+.diagram-frame,
+.diagram-view {
+  fill: var(--diagram-surface);
+  stroke: var(--diagram-border-strong);
+  stroke-width: 1.1;
+  vector-effect: non-scaling-stroke;
+
+  transition:
+    fill 260ms ease,
+    stroke 260ms ease,
+    filter 260ms ease;
+}
+
+.diagram-node {
+  fill: var(--diagram-surface);
+}
+
+.diagram-terminal {
+  fill: var(--diagram-bg);
+  stroke: var(--diagram-border-strong);
+}
+
+.diagram-board {
+  fill: var(--diagram-surface-strong);
+  stroke: var(--diagram-accent);
+}
+
+.diagram-board-inner {
+  fill: none;
+  stroke: var(--diagram-border-strong);
+  stroke-width: 1;
+}
+
+.diagram-chip {
+  fill: var(--diagram-bg);
+  stroke: var(--diagram-secondary);
+  stroke-width: 1.2;
+}
+
+.diagram-frame {
+  fill: var(--diagram-surface);
+  stroke: var(--diagram-accent);
+}
+
+.diagram-view {
+  fill: var(--diagram-bg);
+  stroke: var(--diagram-border-strong);
+}
+
+/* =========================================================
+   TECHNICAL LINES AND ARROWHEADS
+   ========================================================= */
+
+.diagram-arrow {
+  fill: var(--diagram-accent);
+}
+
+.diagram-path,
+.diagram-response,
+.diagram-glyph,
+.diagram-wire,
+.diagram-connector,
+.diagram-crosshair {
+  fill: none;
+  stroke: var(--diagram-accent);
+  stroke-width: 1.35;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+}
+
+.diagram-path {
+  stroke-dasharray: 5 7;
+  opacity: 0.78;
+  animation: diagram-flow 7s linear infinite;
+}
+
+.diagram-response {
+  stroke: var(--diagram-secondary);
+  stroke-dasharray: 4 6;
+  opacity: 0.76;
+  animation: diagram-flow 5s linear infinite reverse;
+}
+
+.diagram-glyph,
+.diagram-wire {
+  stroke: var(--diagram-secondary);
+  stroke-width: 1.45;
+}
+
+.diagram-wire-secondary {
+  stroke: var(--diagram-tertiary);
+}
+
+.diagram-connector,
+.diagram-crosshair {
+  stroke: var(--diagram-muted);
+  opacity: 0.55;
+  stroke-dasharray: 3 5;
+}
+
+.diagram-branch {
+  opacity: 0.45;
+}
+
+.diagram-timeline-track {
+  stroke-width: 1.6;
+  stroke-dasharray: 3 6;
+}
+
+@keyframes diagram-flow {
+  to {
+    stroke-dashoffset: -96;
+  }
+}
+
+/* =========================================================
+   LABELS AND TYPOGRAPHY
+   ========================================================= */
+
+.diagram-label {
+  fill: var(--diagram-text);
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.065em;
+}
+
+.diagram-caption,
+.diagram-node-index,
+.diagram-number {
+  fill: var(--diagram-muted);
+  font-family: var(--mono, "SFMono-Regular", Consolas, monospace);
+  font-size: 7px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+}
+
+.diagram-node-index {
+  fill: var(--diagram-accent);
+  font-weight: 700;
+}
+
+.diagram-terminal + .diagram-rule {
+  stroke: var(--diagram-border-strong);
+}
+
+/* =========================================================
+   STATUS INDICATORS AND DATA PACKETS
+   ========================================================= */
+
+.diagram-status,
+.diagram-dot {
+  fill: var(--diagram-secondary);
+
+  filter: drop-shadow(0 0 4px var(--diagram-secondary));
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: diagram-status-pulse 2.8s ease-in-out infinite;
+}
+
+.diagram-dot.dim {
+  fill: var(--diagram-muted);
+  filter: none;
+  animation: none;
+}
+
+.diagram-packet {
+  fill: #d9fbff;
+
+  filter:
+    drop-shadow(0 0 3px var(--diagram-secondary))
+    drop-shadow(0 0 7px var(--diagram-accent));
+
+  animation: diagram-packet-pulse 1.8s ease-in-out infinite;
+}
+
+.diagram-packet-secondary {
+  fill: var(--diagram-secondary);
+  filter: drop-shadow(0 0 5px var(--diagram-secondary));
+}
+
+@keyframes diagram-status-pulse {
+  0%, 100% {
+    opacity: 0.55;
+    transform: scale(0.86);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.16);
+  }
+}
+
+@keyframes diagram-packet-pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+/* =========================================================
+   ANIMATED STAGE ENTRANCE
+   ========================================================= */
+
+.diagram-stage {
+  opacity: 0;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation:
+    diagram-stage-enter
+    720ms
+    cubic-bezier(0.2, 0.75, 0.25, 1)
+    forwards;
+}
+
+.diagram-stage.stage-1 { animation-delay: 40ms; }
+.diagram-stage.stage-2 { animation-delay: 110ms; }
+.diagram-stage.stage-3 { animation-delay: 180ms; }
+.diagram-stage.stage-4 { animation-delay: 250ms; }
+.diagram-stage.stage-5 { animation-delay: 320ms; }
+.diagram-stage.stage-6 { animation-delay: 390ms; }
+
+@keyframes diagram-stage-enter {
+  from {
+    opacity: 0;
+    transform: translateY(9px) scale(0.975);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   NEURAL NETWORK / TRANSFORMER
+   ========================================================= */
+
+.diagram-neural-link {
+  fill: none;
+  stroke: var(--diagram-secondary);
+  stroke-width: 1;
+  stroke-dasharray: 3 6;
+  opacity: 0.38;
+
+  animation: diagram-neural-signal 3.8s ease-in-out infinite;
+}
+
+.diagram-neural-link:nth-of-type(3n) {
+  animation-delay: -1.1s;
+}
+
+.diagram-neural-link:nth-of-type(3n + 1) {
+  animation-delay: -2s;
+}
+
+.diagram-neuron-halo {
+  fill: var(--diagram-glow);
+  opacity: 0.6;
+
+  animation: diagram-halo-pulse 2.7s ease-in-out infinite;
+}
+
+.diagram-neuron {
+  fill: var(--diagram-surface-strong);
+  stroke: var(--diagram-accent);
+  stroke-width: 1.6;
+
+  filter: drop-shadow(0 0 3px var(--diagram-glow));
+}
+
+.diagram-neural-layer:nth-of-type(2) .diagram-neuron {
+  stroke: var(--diagram-secondary);
+}
+
+.diagram-attention {
+  fill: none;
+  stroke: var(--diagram-tertiary);
+  stroke-width: 1.1;
+  stroke-dasharray: 3 5;
+
+  animation: diagram-flow 5s linear infinite;
+}
+
+.diagram-retrieval-node {
+  stroke: var(--diagram-secondary);
+}
+
+@keyframes diagram-neural-signal {
+  0%, 100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 0.86;
+  }
+}
+
+@keyframes diagram-halo-pulse {
+  0%, 100% {
+    opacity: 0.25;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: scale(1.12);
+  }
+}
+
+/* =========================================================
+   SECURE DNS AND TLS TUNNEL
+   ========================================================= */
+
+.diagram-secure-zone {
+  fill: var(--diagram-secondary);
+  fill-opacity: 0.045;
+  stroke: var(--diagram-secondary);
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+
+  animation: diagram-secure-pulse 3.4s ease-in-out infinite;
+}
+
+.diagram-tunnel-ring {
+  fill: var(--diagram-accent);
+  fill-opacity: 0.025;
+  stroke: var(--diagram-accent);
+  stroke-width: 1.15;
+  stroke-dasharray: 7 5;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: diagram-tunnel-drift 15s linear infinite;
+}
+
+.tunnel-ring-2 {
+  animation-duration: 12s;
+  animation-direction: reverse;
+}
+
+.tunnel-ring-3 {
+  animation-duration: 18s;
+}
+
+@keyframes diagram-secure-pulse {
+  0%, 100% {
+    fill-opacity: 0.035;
+  }
+
+  50% {
+    fill-opacity: 0.1;
+  }
+}
+
+@keyframes diagram-tunnel-drift {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================================================
+   CODE / COMPILER DETAILS
+   ========================================================= */
+
+.diagram-code-line {
+  fill: none;
+  stroke: var(--diagram-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 1;
+  opacity: 0.65;
+
+  animation: diagram-code-highlight 3.4s ease-in-out infinite alternate;
+}
+
+.diagram-code-line.code-2,
+.diagram-code-line.code-5 {
+  stroke: var(--diagram-secondary);
+}
+
+.diagram-code-line.code-4 {
+  stroke: var(--diagram-tertiary);
+}
+
+@keyframes diagram-code-highlight {
+  from {
+    opacity: 0.35;
+  }
+
+  to {
+    opacity: 0.95;
+  }
+}
+
+/* =========================================================
+   TIMELINE NODES
+   ========================================================= */
+
+.diagram-timeline-point {
+  fill: var(--diagram-bg);
+  stroke: var(--diagram-accent);
+  stroke-width: 2;
+}
+
+.diagram-timeline-halo {
+  fill: none;
+  stroke: var(--diagram-accent);
+  stroke-width: 1;
+  opacity: 0.26;
+
+  transform-box: fill-box;
+  transform-origin: center;
+
+  animation: diagram-timeline-pulse 2.8s ease-in-out infinite;
+}
+
+@keyframes diagram-timeline-pulse {
+  0%, 100% {
+    opacity: 0.14;
+    transform: scale(0.85);
+  }
+
+  50% {
+    opacity: 0.46;
+    transform: scale(1.22);
+  }
+}
+
+/* =========================================================
+   GAME ENGINE / WIREFRAME
+   ========================================================= */
+
+.diagram-engine .diagram-wire {
+  stroke-dasharray: 240;
+  stroke-dashoffset: 0;
+
+  animation: diagram-wire-draw 6.5s ease-in-out infinite;
+}
+
+.diagram-engine .diagram-wire-secondary {
+  animation-delay: 450ms;
+}
+
+.diagram-render-point {
+  fill: var(--diagram-secondary);
+
+  filter: drop-shadow(0 0 5px var(--diagram-secondary));
+
+  animation: diagram-status-pulse 2s ease-in-out infinite;
+}
+
+@keyframes diagram-wire-draw {
+  0%, 12% {
+    stroke-dashoffset: 240;
+  }
+
+  65%, 100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+/* =========================================================
+   HOVER FEEDBACK
+   ========================================================= */
+
+@media (hover: hover) and (pointer: fine) {
+  .diagram:hover {
+    border-color: var(--diagram-border-strong);
+
+    box-shadow:
+      0 16px 36px var(--diagram-glow),
+      inset 0 1px 0 rgba(255, 255, 255, 0.055);
+  }
+
+  .diagram:hover .diagram-node {
+    stroke: var(--diagram-accent);
+  }
+
+  .diagram:hover .diagram-path,
+  .diagram:hover .diagram-neural-link {
+    opacity: 0.95;
+  }
+}
+
+/* =========================================================
+   RESPONSIVE SIZING
+   ========================================================= */
+
+@media (max-width: 760px) {
+  .diagram {
+    border-radius: 11px;
+  }
+
+  .diagram-micro-label {
+    font-size: 7.5px;
+  }
+
+  .diagram-label {
+    font-size: 7.5px;
+  }
+
+  .diagram-caption,
+  .diagram-node-index,
+  .diagram-number {
+    font-size: 6.5px;
+  }
+}
+
+@media (max-width: 380px) {
+  .diagram {
+    border-radius: 9px;
+  }
+
+  .diagram-label {
+    font-size: 7px;
+  }
+
+  .diagram-caption,
+  .diagram-node-index,
+  .diagram-number {
+    font-size: 6px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION / ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .diagram,
+  .diagram *,
+  .diagram *::before,
+  .diagram *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .diagram-stage {
+    opacity: 1;
+    transform: none;
+  }
+
+  .diagram-packet,
+  .diagram animateMotion {
+    display: none;
+  }
+
+  .diagram-neural-link {
+    opacity: 0.58;
+  }
+}

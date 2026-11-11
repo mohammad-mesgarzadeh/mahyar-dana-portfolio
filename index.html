@@ -1,0 +1,77 @@
+
+<!doctype html>
+<html lang="en" data-theme="dark">
+  <head>
+    <!-- figma:head-start -->
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="description"
+      content="Mahyar Dana is an AI & Backend Engineer specializing in production-ready backend systems, artificial intelligence, industrial IoT, and automation."
+    />
+
+    <!-- Default theme: Dark Mode -->
+    <meta name="theme-color" content="#090d18" />
+
+    <!-- Initialize theme before CSS loads to prevent theme flash -->
+    <script>
+      (() => {
+        try {
+          const savedTheme = localStorage.getItem("mahyar-theme");
+
+          document.documentElement.dataset.theme =
+            savedTheme === "light" ? "light" : "dark";
+        } catch {
+          document.documentElement.dataset.theme = "dark";
+        }
+      })();
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="128x128"
+      href="/favicon-128.png"
+    />
+
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    />
+
+    <!-- Page Title -->
+    <title>Mahyar Dana | AI &amp; Backend Engineer</title>
+
+    <!-- figma:head-end -->
+  </head>
+
+  <body>
+    <!-- figma:body-start -->
+
+    <div id="root"></div>
+
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- figma:body-end -->
+  </body>
+</html>

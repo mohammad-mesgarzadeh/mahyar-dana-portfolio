@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import 'tailwindcss';
+
+:root {
+  color-scheme: dark;
+  --bg: #090d18;
+  --bg-raised: #0e1525;
+  --surface: #131d30;
+  --surface-raised: #18243a;
+  --text: #f4f7fc;
+  --text-secondary: #9aa8bc;
+  --text-tertiary: #728096;
+  --accent: #718bff;
+  --accent-strong: #91a4ff;
+  --cyan: #36d6ce;
+  --violet: #9b83ff;
+  --border: rgba(148, 163, 184, 0.15);
+  --border-strong: rgba(148, 163, 184, 0.28);
+  --diagram-fill: #111b2b;
+  --diagram-line: #718bff;
+  --diagram-secondary: #36d6ce;
+  --display: 'Space Grotesk', sans-serif;
+  --body: 'Inter', sans-serif;
+  --mono: 'DM Mono', monospace;
+  --max: 1320px;
+  --page-gutter: clamp(20px, 5vw, 76px);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+  --bg: #f7f8fa;
+  --bg-raised: #fff;
+  --surface: #fff;
+  --surface-raised: #f0f3f8;
+  --text: #121827;
+  --text-secondary: #566276;
+  --text-tertiary: #768196;
+  --accent: #4c65d9;
+  --accent-strong: #314dbd;
+  --cyan: #098e91;
+  --violet: #7251ca;
+  --border: #e3e7ee;
+  --border-strong: #cbd2de;
+  --diagram-fill: #f9fbfe;
+  --diagram-line: #4c65d9;
+  --diagram-secondary: #098e91;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 90px; background: var(--bg); }
+  body { min-width: 320px; margin: 0; background: var(--bg); color: var(--text); font-family: var(--body); -webkit-font-smoothing: antialiased; }
+  button, a { color: inherit; }
+  a { text-decoration: none; }
+  button { font: inherit; }
+  ::selection { background: var(--accent); color: #fff; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 4px; }
+}
+
+html, body { transition: background-color .28s ease, color .28s ease; }
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+.reveal.visible { opacity: 1; transform: none; }
+
+@media (max-width: 1080px) {
+  :root { --page-gutter: clamp(22px, 4vw, 44px); }
+}
+
+@media (max-width: 600px) {
+  :root { --page-gutter: 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+/* Shared motion tokens and reveal behavior. */
+:root {
+  --motion-blue: #6b9cff;
+  --motion-cyan: #62d7e9;
+  --motion-violet: #a58bff;
+  --motion-ease: cubic-bezier(.22, 1, .36, 1);
+  --motion-fast: 220ms;
+  --motion-nav-surface: #0b1220;
+  --motion-menu-surface: #0b1220;
+  --motion-nav-border: rgba(139, 164, 205, .18);
+}
+
+/* Shared scroll entrances: clean, low-distance movement with no aggressive bounce. */
+.site-shell .reveal:not(.hero-motion-panel) {
+  opacity: 0;
+  transform: translate3d(0, 28px, 0);
+  filter: blur(5px);
+  transition:
+    opacity 760ms var(--motion-ease),
+    transform 860ms var(--motion-ease),
+    filter 760ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+.site-shell .reveal:not(.hero-motion-panel).visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+  will-change: auto;
+}
+
+[data-theme="light"] {
+  --motion-nav-surface: #f7f9fd;
+  --motion-menu-surface: #f7f9fd;
+  --motion-nav-border: rgba(76, 100, 141, .18);
+}
+
+/* Common reveal used by section headings and supporting content. */
+.site-shell .reveal {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(3px);
+  transition:
+    opacity 680ms ease,
+    transform 820ms var(--motion-ease),
+    filter 680ms ease;
+  will-change: opacity, transform;
+}
+
+.site-shell .reveal.visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+  will-change: auto;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 01 / PROFILE — editorial split reveal and blueprint system scan. */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* 02 / CAPABILITIES — technical blueprint draw and staggered card assembly. */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* 03 / SELECTED WORK — project case-study reveal and animated preview stage. */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* 04 / CAREER — progress rail, alternating milestones and staged detail.    */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* CONTACT — contact endpoints converge into a connected communication hub. */
+/* -------------------------------------------------------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/* MOBILE NAV — rendered through React Portal directly under document.body.   */
+/* This avoids transformed/clipped ancestors and desktop nav CSS collisions.  */
+/* -------------------------------------------------------------------------- */
+
+
+@media (max-width: 760px) {
+  /* Tablet/mobile content grids. */
+}
+
+/* Hero visual layout only; its animation declarations above are unchanged. */
+
+/* Accessibility: content remains visible and nonessential motion is disabled. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    transition-delay: 0ms !important;
+  }
+
+  .site-shell .reveal, .site-shell .reveal.visible {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    clip-path: none !important;
+  }
+
+  svg animateMotion { display: none; }
+}
